@@ -69,12 +69,14 @@ export default function Home() {
 
     // get all posts and summarize
     const summaries = await Promise.all(
-      posts.data.articles.map((post) => summarize(post.url)),
+      posts.data.articles
+        .slice(0, Number(numberOfPosts))
+        .map((post) => summarize(post.url)),
     );
+    
     const successSummaries = summaries
       .filter((s): s is ResultOk<string> => s.ok)
-      .map((s) => s.data)
-      .slice(0, Number(numberOfPosts));
+      .map((s) => s.data);
     console.log("Posts summary", summaries);
 
     // check if we have any posts
@@ -206,7 +208,7 @@ export default function Home() {
                 Latest Posts
               </Title>
               <List>
-                {posts.articles.map((post) => (
+                {posts.articles.slice(0, Number(numberOfPosts)).map((post) => (
                   <List.Item>
                     {dayjs(post.publishedAt).format("DD MMM YYYY")}
                     {" - "}
