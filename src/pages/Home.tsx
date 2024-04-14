@@ -77,6 +77,16 @@ export default function Home() {
       .slice(0, Number(numberOfPosts));
     console.log("Posts summary", summaries);
 
+    // check if we have any posts
+    if (successSummaries.length < 1) {
+      notifications.show({
+        title: "Post summarization",
+        message: "No posts found",
+        color: "red",
+      });
+      return;
+    }
+
     // extract topics from summaries
     const topicSummary = await extractTopics(successSummaries);
     if (!topicSummary.ok) {
@@ -95,7 +105,7 @@ export default function Home() {
     if (relevantTags.length > 0) {
       const relevanceSummary = await extractRelevance(
         successSummaries,
-        relevantTags,
+        relevantTags.map(x => x.trim()),
       );
       if (!relevanceSummary.ok) {
         notifications.show({
