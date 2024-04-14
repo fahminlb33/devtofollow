@@ -1,18 +1,13 @@
-# Storyflare🌤️
+# Dev.to Follow✍️
 
-Create storybook from prompt.
+A little confused who's user to follow in dev.to for your newsletter?
 
-This project uses an LLM to generate a story and a diffusion model to generate image illustrations. It's a very simplified use case of AI models to demonstrate how easy it is to integrate CloudFlare AI on apps. This project uses two models,
+This project uses an LLM to summarize and generate an insight about a user's post topics. Also, it can provide an insight about the user's posts and relevance to your prefereed topics, making it easy to choose which user's to follow for your blog feed. This project uses two models,
 
-- `@hf/thebloke/mistral-7b-instruct-v0.1-awq` to generate the story and extracting a suitable illustration description
-- `@cf/stabilityai/stable-diffusion-xl-base-1.0` to generate the illustration
+- `@cf/facebook/bart-large-cnn` to summarize the post content
+- `@hf/mistral/mistral-7b-instruct-v0.2` to paraphrase the post summaries and to generate post relevancy
 
-Try here: https://storyflare.pages.dev/
-
-Example prompt:
-
-- Story about photosynthesis for high school students
-- Story describing renewable energy for kids
+Try here: https://devtofollow.pages.dev/
 
 ## Requirements
 
@@ -31,7 +26,10 @@ Example prompt:
 
 ```bash
 # clone the repo
-git clone https://github.com/fahminlb33/storyflare.git
+git clone https://github.com/fahminlb33/devtofollow.git
+
+# change working directory
+cd devtofollow
 
 # install dependencies
 npm install
