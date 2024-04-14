@@ -105,7 +105,7 @@ export default function Home() {
     if (relevantTags.length > 0) {
       const relevanceSummary = await extractRelevance(
         successSummaries,
-        relevantTags.map(x => x.trim()),
+        relevantTags.map((x) => x.trim()),
       );
       if (!relevanceSummary.ok) {
         notifications.show({

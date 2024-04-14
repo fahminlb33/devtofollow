@@ -22,7 +22,12 @@ export default function UserCard(props: UserCardProps) {
           <Text fw={700} size="xl">
             {props.name}
           </Text>
-          <Text>Dev.to: {props.username}</Text>
+          <Text>
+            Dev.to:{" "}
+            <Anchor href={`https://dev.to/${props.username}`}>
+              {props.username}
+            </Anchor>
+          </Text>
           <Text>
             GitHub:{" "}
             <Anchor
