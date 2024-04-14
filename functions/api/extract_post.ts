@@ -30,5 +30,5 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     input_text: contents,
   });
 
-  return new Response(summarized.summary);
+  return new Response(summarized.summary.replace(/\s\s+/g, " "));
 };

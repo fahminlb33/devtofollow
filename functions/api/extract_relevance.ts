@@ -20,7 +20,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   // @ts-expect-error
   const summarized = await ai.run("@hf/mistral/mistral-7b-instruct-v0.2", {
     stream: false,
-    prompt: [
+    messages: [
       {
         role: "system",
         content:

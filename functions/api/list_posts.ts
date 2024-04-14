@@ -9,14 +9,15 @@ const DevtoListArticleResponse = z
     published_timestamp: z.coerce.date(),
     tag_list: z.array(z.string()),
     user: z.object({
-      name: z.string(),
       username: z.string(),
-      profile_image_90: z.string().url(),
+      name: z.string().optional(),
+      github_username: z.string().optional(),
+      profile_image_90: z.string().url().optional(),
     }),
   })
   .array();
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export const onRequestGet: PagesFunction<Env> = async (context) => {
   // parse URL to get the username
   const url = new URL(context.request.url);
   if (!url.searchParams.get("username")) {
@@ -47,7 +48,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     user: {
       name: resBody[0].user.name,
       username: resBody[0].user.username,
-      profileImage: resBody[0].user.profile_image_90,
+      githubUsername: resBody[0].user.github_username,
+      profileImageUrl: resBody[0].user.profile_image_90,
     },
     articles: resBody.map((x) => ({
       title: x.title,
